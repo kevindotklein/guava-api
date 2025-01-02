@@ -22,6 +22,6 @@ func NewServer() Server {
 func (s *Server) Run() {
     router := routes.ConfigRoutes(s.server)
 
-    log.Print("djamba at port: ", s.port)
+    log.Print("running at port: ", s.port)
     log.Fatal(router.Run(":" + s.port))
 }

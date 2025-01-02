@@ -10,7 +10,7 @@ func ConfigRoutes(router *gin.Engine) *gin.Engine {
 	{
 		posts := main.Group("posts")
 		{
-            posts.GET("/:id", handlers.GetPost)
+      posts.GET("/:id", handlers.GetPost)
 			posts.GET("/", handlers.GetPosts)
 			posts.POST("/", handlers.CreatePost)
 		}
