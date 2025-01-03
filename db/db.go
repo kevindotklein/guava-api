@@ -1,9 +1,11 @@
 package db
 
 import (
+	"fmt"
 	"log"
 	"time"
 
+	"github.com/kevindotklein/guava-api/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -11,7 +13,13 @@ import (
 var db *gorm.DB
 
 func StartDB() {
-	str := "host=localhost port=25432 user=admin dbname=guava sslmode=disable password=postgres"
+	str := fmt.Sprintf(
+				"host=%s port=%s user=%s dbname=%s sslmode=disable password=%s",
+				config.GetEnv("DB_HOST", "localhost"),
+				config.GetEnv("DB_PORT", "25432"),
+				config.GetEnv("DB_USER", "admin"),
+				config.GetEnv("DB_NAME", "guava"),
+				config.GetEnv("DB_PASSWORD", "postgres"))
 
 	database, err := gorm.Open(postgres.Open(str), &gorm.Config{})
 	if err != nil {

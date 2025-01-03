@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/kevindotklein/guava-api/config"
 	"github.com/kevindotklein/guava-api/server/routes"
 )
 
@@ -14,7 +15,7 @@ type Server struct {
 
 func NewServer() Server {
     return Server{
-        port: "5000",
+        port: config.GetEnv("APP_PORT", "5000"),
         server: gin.Default(),
     }
 }
