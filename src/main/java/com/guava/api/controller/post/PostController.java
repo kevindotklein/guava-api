@@ -3,6 +3,8 @@ package com.guava.api.controller.post;
 import java.util.List;
 import java.util.UUID;
 
+import com.guava.api.domain.post.PostUpdate;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +36,15 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PostResponse> getPost(@PathVariable UUID id) {
+    public ResponseEntity<PostResponse> getPost(@PathVariable @NotNull UUID id) {
         return ResponseEntity.ok(this.postService.getPost(id));
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<PostResponse> updatePost(@PathVariable @NotNull UUID id, @RequestBody @Valid PostUpdate request) {
+        return ResponseEntity.ok(this.postService.updatePost(id, request));
+    }
+
+    //TODO: soft delete
+    //TODO: jwt auth
 }

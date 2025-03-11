@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.guava.api.common.exception.Resource;
 import com.guava.api.common.exception.ResourceNotFoundException;
+import com.guava.api.domain.post.PostUpdate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -47,5 +48,17 @@ public class PostService {
                 request.createdAt(), user);
         this.postRepository.save(post);
         return postMapper.to(post);
+    }
+
+    public PostResponse updatePost(UUID id, PostUpdate request) {
+        Post post = this.postRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id, Resource.POST));
+
+        post.setTitle(request.title());
+        post.setContent(request.content());
+        post.setHearts(request.hearts());
+
+        Post updatedPost = this.postRepository.save(post);
+        return this.postMapper.to(updatedPost);
     }
 }
