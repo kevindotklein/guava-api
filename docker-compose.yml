@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://postgres:5432/guava-api
+      DATASOURCE_USERNAME: postgres
+      DATASOURCE_PASSWORD: postgres
+      SERVER_ADDRESS: 0.0.0.0
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - "25432:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: guava-api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
