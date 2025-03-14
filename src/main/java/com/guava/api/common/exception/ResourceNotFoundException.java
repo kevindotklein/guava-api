@@ -2,16 +2,14 @@ package com.guava.api.common.exception;
 
 import lombok.Getter;
 
-import java.util.UUID;
-
 @Getter
 public class ResourceNotFoundException extends RuntimeException {
-    private final UUID id;
+    private final Object query;
     private final Resource resource;
 
-    public ResourceNotFoundException(UUID id, Resource resource) {
+    public ResourceNotFoundException(Object query, Resource resource) {
         super();
-        this.id = id;
+        this.query = query;
         this.resource = resource;
     }
 }

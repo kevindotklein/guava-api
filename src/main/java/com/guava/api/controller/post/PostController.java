@@ -3,14 +3,14 @@ package com.guava.api.controller.post;
 import java.util.List;
 import java.util.UUID;
 
-import com.guava.api.domain.post.PostUpdate;
+import com.guava.api.domain.post.dto.PostUpdate;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.guava.api.domain.post.PostRequest;
-import com.guava.api.domain.post.PostResponse;
+import com.guava.api.domain.post.dto.PostRequest;
+import com.guava.api.domain.post.dto.PostResponse;
 import com.guava.api.service.post.PostService;
 
 import jakarta.validation.Valid;

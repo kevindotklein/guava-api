@@ -1,4 +1,6 @@
-package com.guava.api.domain.user;
+package com.guava.api.domain.user.dto;
+
+import com.guava.api.domain.user.UserRole;
 
 import java.time.Instant;
 import java.util.UUID;

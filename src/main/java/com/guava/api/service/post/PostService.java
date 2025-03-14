@@ -5,15 +5,15 @@ import java.util.UUID;
 
 import com.guava.api.common.exception.Resource;
 import com.guava.api.common.exception.ResourceNotFoundException;
-import com.guava.api.domain.post.PostUpdate;
+import com.guava.api.domain.post.dto.PostUpdate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.guava.api.domain.post.Post;
-import com.guava.api.domain.post.PostRequest;
-import com.guava.api.domain.post.PostResponse;
+import com.guava.api.domain.post.dto.PostRequest;
+import com.guava.api.domain.post.dto.PostResponse;
 import com.guava.api.domain.user.User;
 import com.guava.api.repositories.post.PostRepository;
 import com.guava.api.repositories.user.UserRepository;

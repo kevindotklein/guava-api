@@ -1,4 +1,4 @@
-package com.guava.api.domain.post;
+package com.guava.api.domain.post.dto;
 
 import java.time.Instant;
 import java.util.UUID;
