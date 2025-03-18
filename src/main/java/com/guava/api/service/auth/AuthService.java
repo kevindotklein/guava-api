@@ -41,10 +41,13 @@ public class AuthService {
         Instant now = Instant.now();
         long expiresIn = 300L;
 
+        String scope = user.getRole().name();
+
         var claims = JwtClaimsSet.builder()
                 .issuer("guava")
                 .subject(user.getId().toString())
                 .expiresAt(now.plusSeconds(expiresIn))
+                .claim("scope", scope)
                 .issuedAt(now)
                 .build();
 
