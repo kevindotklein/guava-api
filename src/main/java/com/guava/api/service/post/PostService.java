@@ -1,5 +1,6 @@
 package com.guava.api.service.post;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,6 +10,7 @@ import com.guava.api.domain.post.dto.PostUpdate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.guava.api.domain.post.Post;
@@ -40,12 +42,12 @@ public class PostService {
         return this.postMapper.to(post);
     }
 
-    public PostResponse createPost(PostRequest request) {
-        User user = this.userRepository.findById(request.userId())
-                .orElseThrow(() -> new ResourceNotFoundException(request.userId(), Resource.USER));
+    public PostResponse createPost(PostRequest request, JwtAuthenticationToken token) {
+        User user = this.userRepository.findById(UUID.fromString(token.getName()))
+                .orElseThrow(() -> new ResourceNotFoundException(UUID.fromString(token.getName()), Resource.USER));
         Post post = new Post(UUID.randomUUID(), request.title(), request.content(),
-                request.hearts(),
-                request.createdAt(), user);
+                0,
+                Instant.now(), user);
         this.postRepository.save(post);
         return postMapper.to(post);
     }

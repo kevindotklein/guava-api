@@ -7,6 +7,7 @@ import com.guava.api.domain.post.dto.PostUpdate;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import com.guava.api.domain.post.dto.PostRequest;
@@ -30,8 +31,9 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostResponse> createPost(@RequestBody @Valid PostRequest request) {
-        return new ResponseEntity<>(this.postService.createPost(request),
+    public ResponseEntity<PostResponse> createPost(@RequestBody @Valid PostRequest request,
+                                                   JwtAuthenticationToken token) {
+        return new ResponseEntity<>(this.postService.createPost(request, token),
                 HttpStatus.CREATED);
     }
 
@@ -46,5 +48,4 @@ public class PostController {
     }
 
     //TODO: soft delete
-    //TODO: jwt auth
 }
